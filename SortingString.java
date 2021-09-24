@@ -1,38 +1,53 @@
-import java.util.Scanner;
+import java.util.Comparator;
+import java.util.Arrays;
+
+
 public class SortingString{
+
+ static void sort(final String[] strArr,final  String str)
+    {
+        Comparator<String> myComp = new Comparator<String>()
+        {
+            @Override
+            public int compare(String a, String b)
+            {
+                for(int i = 0;
+                        i < Math.min(a.length(),
+                                    b.length()); i++)
+                {
+                    if (str.indexOf(a.charAt(i)) ==
+                        str.indexOf(b.charAt(i)))
+                    {
+                        continue;
+                    }
+                    else if(str.indexOf(a.charAt(i)) >
+                            str.indexOf(b.charAt(i)))
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+                }
+                return 0;
+            }
+        };
+        Arrays.sort(strArr, myComp);
+    }
+
+
 public static void main(String args[])
 {
-    Scanner in=new Scanner(System.in);
 
-
-  //  String arr[]=new String[n];
+    StringSorting s = new StringSorting();
+    String cualph="pybrxwuvncehkolfagjqszidmt" ;
     String arr[]={"boy" ,"your" ,"toy", "kkr" ,"krk" ,"rrr"}; 
 
-        int n=arr.length;  
+    sort(arr,cualph);
 
-    System.out.println("Enter all the Element :");
-    for(int i=0;i<n ;i++) {
-     //   arr[i]=in.nextline();
-    }
-    //sorting element
-   for(int i = 0; i<n; i++)   
-    {  
-        for (int j = i+1; j<n; j++)   
-        {  
-            //compares each elements of the array to all the remaining elements  
-            if(arr[i].compareTo(arr[j])>0)   
-            {  
-                //swapping array elements  
-                String temp = arr[i];  
-                arr[i] = arr[j];  
-                arr[j] = temp;  
-            }  
-        }  
-    }  
-
-    
-    System.out.println("Element sorted:");
-    for(int i=0;i<n;i++)
+    System.out.println("Element print:");
+    for(int i=0;i<arr.length;i++)
     {
         System.out.println(arr[i]);
     }
